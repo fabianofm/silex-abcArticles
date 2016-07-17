@@ -1,19 +1,30 @@
 {
-    "name": "fabianophp/abcArticles",
+    "name"	: "fabianophp/abcArticles",
     "description": "Silex - abcArticles: A small web app.",
-    "version":"0.0.1",
-    "type": "project",
+    "version"	: "0.0.1",
+    "type"	: "project",
+    "keywords"	: ["framework"],
+    "homepage"	: "https://github.com/fabianophp/Silex-abcArticles",
+    "license"	: "MIT",
+    "authors"	: [
+        {
+            "name"  : "Fabiano Monteiro",
+            "email" : "fabianophp@hotmail.com"
+        }
+    ],
     "require": {
-        "php": ">=5.5.9",
-        "silex/silex": "~1.3",
-        "symfony/config": "~2.3",
-        "symfony/form": "~2.3",
-        "symfony/security": "~2.3",
-        "symfony/serializer": "~2.3",
-        "symfony/validator": "~2.3",
-        "symfony/twig-bridge": "~2.3",
-        "doctrine/dbal": "~2.2",
-        "symfony/monolog-bridge": "^3.1",
-        "twig/extensions": "^1.3"
+        "silex/silex"		: "1.3.*",
+        "symfony/config"	: ">=2.3,<2.4-dev",
+        "symfony/form"		: ">=2.3,<2.4-dev",
+        "symfony/security"	: ">=2.3,<2.4-dev",
+        "symfony/serializer"	: ">=2.3,<2.4-dev",
+        "symfony/validator"	: ">=2.3,<2.4-dev",
+        "symfony/monolog-bridge": ">=2.3,<2.4-dev",
+        "symfony/http-foundation": ">=2.3,<2.4-dev",
+        "symfony/twig-bridge"	: ">=2.3,<2.4-dev",
+        "twig/extensions"	: "^1.3",
+        "monolog/monolog"	: "~1.4,>=1.4.1",
+        "doctrine/dbal"		: "~2.5"
+        
     }
 }
