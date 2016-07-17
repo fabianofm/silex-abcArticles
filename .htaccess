@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+     RewriteEngine On
+     RewriteRule ^$ /web/ [L]
+     RewriteCond %{REQUEST_FILENAME} !-f
+     RewriteCond %{REQUEST_FILENAME} !-d
+     RewriteCond %{REQUEST_URI} !^/web/
+     RewriteRule ^(.*)$ /web/$1
+     RewriteCond %{SCRIPT_FILENAME} -d
+     #RewriteRule ^website.com/(.*[^/])$ http://www.website.com/$1/ [R=301]
+</IfModule>

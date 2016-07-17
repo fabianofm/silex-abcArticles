@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+<div class="well well-sm"><h1>Login</h1></div>
+
+<form role="form" action="{{ path('login_check') }}" method="post">
+  <fieldset class="form-group">
+    <p><label for="username">Username: </label>
+      <input id="username" type="text" name="_username" value="{{ last_username }}" required placeholder="Enter user" class="form-control"></p>
+    <p><label for="password">Password: </label>
+      <input id="password" type="password" name="_password" required placeholder="Enter password" class="form-control"></p>
+    <p><input type="submit" value="Log in" class="btn btn-primary"></p>
+  </fieldset>
+  {% if error %}
+      <div class="alert alert-warning">
+        <strong>Warning!</strong> {{ error }}
+      </div>
+  {% endif %}
+</form>
+
+{% endblock %}

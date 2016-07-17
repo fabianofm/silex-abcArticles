@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+
+<div class="well well-sm"><h1>Administration</h1></div>
+
+<ul>
+  <li><a href="{{ path('add-user') }}" class="btn">Add User</a></li>
+  <li><a href="{{ path('add-article') }}" class="btn">Add Article</a></li>
+</ul>
+
+{% if users is defined %}
+ <h2>Users</h2>
+ <ul>
+ {% for user in users %}
+  <li>
+    {{ user.username|e }} {% if user.roles == "ROLE_ADMIN" %}<span class="badge">Admin</span>{% endif %}
+      <ul>
+          <li>
+            <a href="{{ path('update-user',{id: user.id, name: user.username}) }}" class="btn">
+              <span class="label label-info">Update</span>
+            </a>
+          </li>
+          {% if user.id != 1 %}
+            <li>
+              <a data-href="{{ path('remove-user',{id: user.id, name: user.username}) }}" class="btn" data-toggle="confirmation">
+                <span class="label label-danger">Delete</span>
+              </a>
+            </li>
+          {% endif %}
+      </ul>
+  </li>
+
+ {% endfor %}
+ </ul>
+{% endif %}
+
+{% endblock %}

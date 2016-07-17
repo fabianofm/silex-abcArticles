@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+
+    <div class="well well-sm"><h1>Administration</h1></div>
+    {% if msgi is defined %}
+        {% for msge in msgi %}
+            <div class="alert alert-warning">
+                {{ msge }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if form is defined %}
+        <form role="form" action="#" method="post">
+            <fieldset class="form-group has-warning has-feedback">
+                <legend>
+                    Create Article
+                </legend>
+                {{ form_widget(form) }}
+                <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                <input type="submit" name="submit" class="btn btn-primary"/>
+            </fieldset>
+        </form>
+    {% endif %}
+
+    {% if form_update is defined %}
+        <form role="form" action="#" method="post">
+            <fieldset class="form-group has-warning has-feedback">
+                <legend>
+                    Update Article
+                </legend>
+                {{ form_widget(form_update) }}
+                <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                <input type="submit" name="submit" class="btn btn-primary"/>
+            </fieldset>
+        </form>
+    {% endif %}
+
+{% endblock %}

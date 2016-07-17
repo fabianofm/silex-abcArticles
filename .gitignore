@@ -1,0 +1,8 @@
+vendor
+vendor/*
+.idea
+.idea/*
+resources/logs/*
+web/assets/js/tinymce/*
+composer.lock
+composer.phar

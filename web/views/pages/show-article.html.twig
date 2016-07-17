@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+    <div class="well well-sm"><h1>Articles</h1></div>
+    {% if single is defined %}
+        <article>
+            <header>
+                <h2>{{ single['title'] }}</h2>
+                <p><em>
+                        {{ single['created']|date("d/m/Y H:i") }}
+                        {% if (single['updated'] != 0) %}  updated: {{ single['updated']|date("d/m/Y H:i") }} {% endif %}
+                        &larr; {{ single['author'] }}
+                    </em></p>
+            </header>
+            <section class="media">
+                {% if single['img'] %}
+                    <span class="media-left">
+          <img style="width:200px" src="/assets/img/{{ single['img'] }}">
+        </span>
+                {% endif %}
+                {% autoescape false %}
+                    {{ single['content'] }}
+                {% endautoescape %}
+            </section>
+        </article>
+
+        {% if single['previous'] is defined or single['next'] is defined %}
+            <ul class="pager">
+                {% if single['previous'] is defined %}
+                    <li class="previous"><a href="/article/{{ single['previous'] }}">&larr; Previous</a></li>
+                {% endif %}
+                {% if single['next'] is defined %}
+                    <li class="next"><a href="/article/{{ single['next'] }}">Next &rarr;</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+    {% else %}
+
+        {% for article in articles %}
+            <article>
+                <header>
+                    <h2>
+                        {{ article.title }}
+                        {{ (article.restricted == "Y") ? "<span class='badge'>registered members</span>":"" }}
+                    </h2>
+
+                    {% if app.user is not null %}
+                        {% for role in app.user.roles if (role != 'ROLE_USER') %}
+                            <button data-toggle="collapse" data-target="#act{{ article.id }}">Admin Actions</button>
+                            <div id="act{{ article.id }}" class="collapse">
+                                <ul>
+                                    <li><a href="{{ path('update-article',{id: article.id}) }}" class="btn"><span
+                                                    class="label label-info">Update</span></a></li>
+                                    <li><a data-href="{{ path('remove-article',{id: article.id, title: article.title}) }}"
+                                           class="btn" data-toggle="confirmation">
+                                            <span class="label label-danger">Delete</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                </header>
+                <section class="media">
+                    {% if article.img %}
+                        <span class="media-left"><img style="width:200px" src="/assets/img/{{ article.img }}"></span>
+                    {% endif %}
+                    <div class="media-body">
+                        {% autoescape false %}
+                            {{ article.content|raw|truncate(100, true) }}
+                        {% endautoescape %}
+                        <a href="{{ path('article',{id: article.id}) }}" class="">Read More</a>
+                    </div>
+                </section>
+                <br style="clear:both"/>
+            </article>
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}
