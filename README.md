@@ -10,6 +10,7 @@ Installation
         php composer.phar install
     -   db.options (src/App.php) - Change the database name, username and password.
     -   $app['twig.options.cache'] (src/App.php) - To enable caching, uncomment.
+    -	Create and give permission to folder: resources/logs
     -   To use the TinyMCE editor in textarea field, uncompress tinymce 4.4 * in 'web/assets/js/tinymce' 
     and uncomment the JS code(tinyMCE.init) of base.html.twig
     -   The structure of the tables are in the file (resources/db/schema.php). 
